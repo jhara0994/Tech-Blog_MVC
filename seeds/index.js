@@ -7,7 +7,7 @@ const seedAll = async () => {
 
   await blogSeed();
 
-  //await commentSeed();
+  await commentSeed();
 
   process.exit(0);
 };
