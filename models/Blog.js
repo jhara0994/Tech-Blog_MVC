@@ -29,6 +29,7 @@ Blog.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
+            primaryKey: true,
         },
         description: {
             type: DataTypes.STRING,
