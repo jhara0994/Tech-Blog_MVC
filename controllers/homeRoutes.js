@@ -2,13 +2,14 @@ const router = require('express').Router();
 const { Blog, Comment, User } = require('../../models');
 const withAuth = require('../utils/auth');
 
+// GET all blog posts
 router.get('/', async (req, res) => {
     try{
         const blogData = await Blog.findAll({
             include: [
                 {
                     model: User,
-                    attributes: 'name',
+                    attributes: { exclude: ['password'] },
                 },
                 {
                     model: Comment,
@@ -72,7 +73,8 @@ router.get('/blogData', withAuth, async (req, res) => {
     }
 })
 
-router.ger('/login', (req, res) => {
+//GET route for login
+router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/blogData')
         return
