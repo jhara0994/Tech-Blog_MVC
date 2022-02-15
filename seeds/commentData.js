@@ -2,15 +2,15 @@ const { Comment } = require('../models');
 
 const commentData = [
   {
-    user: 'LadyUx',
-    user_id: 3,
-    post_date: 'February 10, 2022',
-    blog_id: 2,
-    comment:
+    "user": 'LadyUx',
+    "user_id": 3,
+    "post_date": 'February 10, 2022',
+    "blog_id": 2,
+    "comment":
       'Learning the difference between authorization and authentication is crucial to understand to be a quality developer.',
   },
   {
-    user: 'SirTechie',
+    "user": 'SirTechie',
     user_id: 2,
     post_date: 'December 05, 2021',
     blog_id: 3,

@@ -3,7 +3,7 @@ const { User, Blog, Comment } = require('../models');
 
 const userData = require('./userData.json');
 const blogSeed = require('./blogData.json');
-const commentSeed = require('./commentData');
+const commentSeed = require('./commentData.json');
 const posts = []
 
 const seedAll = async () => {
