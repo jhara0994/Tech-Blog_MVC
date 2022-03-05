@@ -9,11 +9,10 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: { exclude: ['password'] },
+                    attributes: [{ exclude: ['password'] }],
                 },
                 {
                     model: Comment,
-                    attributes: ['description, post_date, user_id,']
                 },
             ],
         })
@@ -29,17 +28,17 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/blog/:id', async (req, res) => {
+router.get('/blog/:id', withAuth, async (req, res) => {
     try{
-        const blogData = await Blog.findByPk({
+        const blogData = await Blog.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
-                    attributes: 'name',
+                    attributes: ['id'],
                 },
                 {
                     model: Comment,
-                    attributes: ['description, post_date, user_id,']
+                    attributes: ['id, description, post_date, user_id,']
                 },
             ],
         })

@@ -1,37 +1,37 @@
 const router = require('express').Router();
 const { Blog, Comment } = require('../../models');
 
-// GET all blog current blog posts
-router.get('/', async (req, res) => {
-    try {
-        const dbBlogData = await Blog.findAll({
-            include: [{ model: Comment }],
-        })
-        res.status(200).json(dbBlogData);
-    }   catch (err) {
-        res.status(500).json(err);
-  }
-})
+// // GET all blog current blog posts
+// router.get('/', async (req, res) => {
+//     try {
+//         const dbBlogData = await Blog.findAll({
+//             include: [{ model: Comment }],
+//         })
+//         res.status(200).json(dbBlogData);
+//     }   catch (err) {
+//         res.status(500).json(err);
+//   }
+// })
 
-// GET blog posts by ID
-router.get('/:id', async (req, res) => {
-  // find one category by its `id` value
-  try {
-    const dbBlogData = await Blog.findByPk(req.params.id, {
-      // including comments with blog posts.
-      include: [{ model: Comment }],
-    });
+// // GET blog posts by ID
+// router.get('/:id', async (req, res) => {
+//   // find one category by its `id` value
+//   try {
+//     const dbBlogData = await Blog.findByPk(req.params.id, {
+//       // including comments with blog posts.
+//       include: [{ model: Comment }],
+//     });
 
-    if (!dbBlogData) {
-      res.status(404).json({ message: 'No blog post found with that id!' });
-      return;
-    }
+//     if (!dbBlogData) {
+//       res.status(404).json({ message: 'No blog post found with that id!' });
+//       return;
+//     }
 
-    res.status(200).json(dbBlogData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.status(200).json(dbBlogData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 // CREATE new blog post
@@ -46,11 +46,7 @@ router.post('/', async (req, res) => {
           description: req.body.description,
         });
     
-        req.session.save(() => {
-          req.session.loggedIn = true;
-    
-          res.status(200).json(dbUserData);
-        });
+        res.status(200).json(dbBlogData);
       } catch (err) {
         console.log(err);
         res.status(500).json(err);

@@ -20,14 +20,14 @@ const seedAll = async () => {
 
   console.log ('\n ********** USERS SEEDED ********** \n')
 
-  for (const post of blogSeed) {
-    posts.push(await Blog.create ({
-      ...post,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    }))
-  }
+  // for (const blog of blogSeed) {
+  //   posts.push(await Blog.create ({
+  //     ...post,
+  //     user_id: users[Math.floor(Math.random() * users.length)].id,
+  //   }))
+  // }
 
-  console.log ('\n ********** BLOGS SEEDED ********** \n')
+  // console.log ('\n ********** BLOGS SEEDED ********** \n')
 
   // for (const comment of commentSeed) {
   //   await Comment.create({
