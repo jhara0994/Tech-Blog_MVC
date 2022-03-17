@@ -2,16 +2,14 @@
 <div class="row mb-4 project">
   <div class="col-md-5 card">
     <h2>
-      <a href="/blog/{{blog.title}}">{{blog.title}}</a>
+      <a href="/blog/{{id}}">{{title}}</a>
     </h2>
     <div class="description">{{blog.description}}
-      <p>Posted: {{blog.user}} on {{format_date blog.post_date}}</p>
+      <p>Posted: {{User.name}} on {{format_date createdAt}}</p>
     </div>
   </div>
   <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
+      {{body}}
   </div>
 </div>
 {{/each}}

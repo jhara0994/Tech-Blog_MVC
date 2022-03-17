@@ -12,8 +12,8 @@ router.get('/', withAuth, async (req, res) => {
   
       const posts = blogData.map((post) => post.get({ plain: true }));
   
-      res.render('all-posts-admin', {
-        layout: 'dashboard',
+      res.render('dash-posts', {
+        layout: 'dash',
         posts,
       });
     } catch (err) {
@@ -23,7 +23,7 @@ router.get('/', withAuth, async (req, res) => {
 
 router.get('/new', withAuth, (req, res) => {
     res.render('new-post', {
-      layout: 'dashboard',
+      layout: 'dash',
     });
 });
 
@@ -35,7 +35,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
         const post = blogData.get({ plain: true });
   
         res.render('edit-post', {
-          layout: 'dashboard',
+          layout: 'dash',
           post,
         });
       } else {
