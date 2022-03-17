@@ -82,13 +82,13 @@ router.delete('/:id', withAuth, async (req, res) => {
       },
     });
 
-    if (dbBlogData > 0) {
-      res.status(200).end();
-    } else {
-      res.status(404).end();
+    if (!dbBlogData) {
+      res.status(404).json({ message: 'No blog post found with that ID!' }).end()
+      return
     }
+    res.status(200).json(dbBlogData).end()
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
 });
 

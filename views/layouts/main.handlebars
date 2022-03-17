@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TechNique</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <header>
-    <h1>TechNique Blog Spot</h1>
+  <header class="hero">
+    <h1 class="app-title"><a href="/">TechNique Blog Spot</a></h1>
   </header>
   <nav>
     <a href="/">Home</a>
@@ -22,17 +23,15 @@
     <a href="/login">Login</a>
     {{/if}}
   </nav>
-  <main>
-    <div class="blog">
-      {{{body}}}
-      <div class="comments">
-        {{{section}}}
-      </div>
-    </div>
+   <main class="col-auto">
+    {{{body}}}
   </main>
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
 
+  <footer class="flex-row justify-center">
+    &copy; TechNique Blogging
+  </footer>
+
+</body>
 </html>
+
+<script src="/js/logout.js"></script>
