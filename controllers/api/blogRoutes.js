@@ -74,6 +74,7 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 })
 
+// only route not working right now. 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const [dbBlogData] = Blog.destroy({
