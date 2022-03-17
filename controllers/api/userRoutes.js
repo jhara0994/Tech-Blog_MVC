@@ -4,17 +4,17 @@ const { User } = require('../../models');
 // CREATE new user
 router.post('/', async (req, res) => {
   try {
-    const dbUserData = await User.create({
+    const newUserData = await User.create({
       name: req.body.name,
-      email: req.body.email,
       password: req.body.password,
     });
 
     req.session.save(() => {
-      req.session.user_id = dbUserData.id
+      req.session.user_id = newUserData.id
+      req.session.name = newUserData.name
       req.session.loggedIn = true;
 
-      res.status(200).json(dbUserData);
+      res.status(200).json(newUserData);
     });
   } catch (err) {
     console.log(err);
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
-        email: req.body.email,
+        name: req.body.name,
       },
     });
 
@@ -49,6 +49,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id
+      req.session.name = dbUserData.name
       req.session.loggedIn = true;
 
       res

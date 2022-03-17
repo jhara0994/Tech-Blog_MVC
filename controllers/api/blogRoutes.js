@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Blog, Comment } = require('../../models');
+const { Blog } = require('../../models');
+const withAuth = require('../../utils/auth')
+
 
 // // GET all blog current blog posts
 // router.get('/', async (req, res) => {
@@ -35,18 +37,17 @@ const { Blog, Comment } = require('../../models');
 
 
 // CREATE new blog post
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
+
+  const body = req.body
+
     try {
-        const dbBlogData = await Blog.create({
-          title: req.body.title,
-          user: req.body.user,
-          user_id: req.body.user_id,
-          post_date: req.body.post_date,
-          blog_id: req.body.blog_id,
-          description: req.body.description,
+        const newBlogData = await Blog.create({
+          ...body,
+          user_id: req.session.user_id,
         });
     
-        res.status(200).json(dbBlogData);
+        res.status(200).json(newBlogData);
       } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -54,23 +55,41 @@ router.post('/', async (req, res) => {
 })
 
 // Update/edit a blog post. - needs work
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   // update a category by its `id` value
   try {
-  const dbBlogData = await Blog.update(req.body, {
+  const [dbBlogData] = await Blog.update(req.body, {
       where: {
-        description: req.params.id,
+        id: req.params.id,
       },
     })
 
     if (!dbBlogData) {
-      res.status(404).json({ message: 'No blog post found with that ID!' })
+      res.status(404).json({ message: 'No blog post found with that ID!' }).end()
       return
     }
-    res.status(200).json(dbBlogData)
+    res.status(200).json(dbBlogData).end()
   } catch (err) {
     res.status(500).json(err)
   }
 })
+
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const [dbBlogData] = Blog.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (dbBlogData > 0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
