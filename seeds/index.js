@@ -9,7 +9,7 @@ const posts = []
 const seedAll = async () => {
   console.log ('\n ********** SEEDING ********** \n')
   
-  // await sequelize.sync({ force: true });
+  await sequelize.sync({ force: true });
 
   console.log ('\n ********** DATABASE SYNCED ********** \n')
 

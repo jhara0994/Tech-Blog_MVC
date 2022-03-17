@@ -1,28 +1,17 @@
 const router = require('express').Router();
 const { Blog, Comment, User } = require('../models');
-const withAuth = require('../utils/auth');
+// const withAuth = require('../utils/auth');
 
 // GET all blog posts
 router.get('/', async (req, res) => {
     try{
         const blogData = await Blog.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: [{ exclude: ['password'] }],
-                },
-                {
-                    model: Comment,
-                },
-            ],
+            include: [User],
         })
 
-        const post = blogData.map((post) => post.get({ plain: true }))
+        const posts = blogData.map((post) => post.get({ plain: true }))
 
-        res.render('homepage', {
-            post,
-            loggedIn: req.session.loggedIn
-        });
+        res.render('homepage', {posts});
     } catch (err) {
         res.status(500).json(err)
     }
@@ -43,39 +32,40 @@ router.get('/blog/:id', withAuth, async (req, res) => {
             ],
         })
 
-        const post = blogData.get({ plain: true })
-
-        res.render('post', {
-            ...post,
-            loggedIn: req.session.loggedIn
-        });
-    } catch (err) {
-        res.status(500).json(err)
-    }
+        if (blogData) {
+            const post = blogData.get({ plain: true });
+      
+            res.render('single-post', { post });
+          } else {
+            res.status(404).end();
+          }
+        } catch (err) {
+          res.status(500).json(err);
+        }
 })
 
-router.get('/blogData', withAuth, async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: 'password' },
-            include: [{ model: Blog }, { model: Comment }],
-        });
+// router.get('/blogData', withAuth, async (req, res) => {
+//     try {
+//         const userData = await User.findByPk(req.session.user_id, {
+//             attributes: { exclude: 'password' },
+//             include: [{ model: Blog }, { model: Comment }],
+//         });
 
-        const user = userData.get({ plain: true })
+//         const user = userData.get({ plain: true })
 
-        res.render('blogData', {
-            ...user,
-            loggedIn: true
-        })
-    }   catch (err) {
-        res.status(500).json(err)
-    }
-})
+//         res.render('blogData', {
+//             ...user,
+//             loggedIn: true
+//         })
+//     }   catch (err) {
+//         res.status(500).json(err)
+//     }
+// })
 
 //GET route for login
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/blogData')
+        res.redirect('/')
         return
     }
 
