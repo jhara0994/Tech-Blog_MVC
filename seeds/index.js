@@ -2,8 +2,8 @@ const sequelize = require('../config/connection');
 const { User, Blog, Comment } = require('../models');
 
 const userData = require('./userData.json');
-const blogSeed = require('./blogData.json');
-const commentSeed = require('./commentData.json');
+const blogData = require('./blogData.json');
+const commentData = require('./commentData.json');
 const posts = []
 
 const seedAll = async () => {
@@ -20,22 +20,22 @@ const seedAll = async () => {
 
   console.log ('\n ********** USERS SEEDED ********** \n')
 
-  // for (const blog of blogSeed) {
-  //   posts.push(await Blog.create ({
-  //     ...post,
-  //     user_id: users[Math.floor(Math.random() * users.length)].id,
-  //   }))
-  // }
+  for (const blog of blogData) {
+    posts.push(await Blog.create ({
+      ...blog,
+      // user_id: users[Math.floor(Math.random() * users.length)].id,
+    }))
+  }
 
-  // console.log ('\n ********** BLOGS SEEDED ********** \n')
+  console.log ('\n ********** BLOGS SEEDED ********** \n')
 
-  // for (const comment of commentSeed) {
-  //   await Comment.create({
-  //     ...comment,
-  //     //user_id: users[Math.floor(Math.random() * users.length)].id,
-  //     blog_id: posts[Math.floor(Math.random() * users.length)].id,
-  //   })
-  // }
+  for (const comment of commentData) {
+    await Comment.create({
+      ...comment,
+      post_id: posts[Math.floor(Math.random() * posts.length)].id,
+   
+    })
+  }
 
   console.log ('\n ********** COMMENTS SEEDED ********** \n')
 

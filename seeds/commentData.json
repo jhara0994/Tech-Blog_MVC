@@ -1,14 +1,20 @@
 [
     {
       "comment":
-        "Learning the difference between authorization and authentication is crucial to understand to be a quality developer."
+        "Learning the difference between authorization and authentication is crucial to understand to be a quality developer.",
+      "user_id": 1,
+      "commentor": "Tom Riddle"
     },
     {
       "comment": 
-          "Handlebars is one of the most functional tools I have found and love having it in me repertoire."
+          "Handlebars is one of the most functional tools I have found and love having it in me repertoire.",
+      "user_id": 2,
+      "commentor": "Herm"
     },
     {
       "comment": 
-          "MVC has helped me greatly in my career, and I suggest all developers learn this framework."
+          "MVC has helped me greatly in my career, and I suggest all developers learn this framework.",
+      "user_id": 3,
+      "commentor": "Neville"
     }
   ]

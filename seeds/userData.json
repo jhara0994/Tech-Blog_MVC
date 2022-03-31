@@ -1,18 +1,23 @@
 [
     {
-      "name": "LadyUx",
+      "name": "Herm",
       "email": "ladyux@hotmail.com",
-      "password": "password12345"
+      "password": "password123"
     },
     {
-      "name": "SirTechie",
+      "name": "Tom Riddle",
       "email": "sirtechie@gmail.com",
-      "password": "password12345"
+      "password": "password123"
     },
     {
-      "name": "JavaMan",
+      "name": "Neville",
       "email": "javaman@aol.com",
-      "password": "password12345"
+      "password": "password123"
+    },
+    {
+      "name": "Jared",
+      "email": "jared@gmail.com",
+      "password": "password123"
     }
   ]
   
