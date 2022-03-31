@@ -13,16 +13,16 @@
 <body>
   <header class="hero">
     <h1 class="app-title"><a href="/">TechNique Blog Spot</a></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dash">Dashboard</a> 
+      {{#if loggedIn}}
+      <button id="logout" class="btn-no-style">Logout</button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+    </nav>
   </header>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/dash">Dashboard</a> 
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
    <main class="col-auto">
     {{{body}}}
   </main>

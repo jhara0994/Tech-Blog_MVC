@@ -3,16 +3,13 @@ const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 // CREATE new blog post
-router.post('/', withAuth, async (req, res) => {
 
-  const body = req.body
-
-    try {
-        const newBlogData = await Blog.create({
-          ...req.body,
-          user_id: req.session.user_id,
-        });
-    
+router.post('/', async (req, res) => {
+  try {
+    const newBlogData = await Blog.create({
+        ...req.body,
+        user_id: req.session.user_id,
+    });
         res.status(200).json(newBlogData);
       } catch (err) {
         console.log(err);
@@ -24,14 +21,15 @@ router.post('/', withAuth, async (req, res) => {
 router.put('/:id', withAuth, async (req, res) => {
   // update a category by its `id` value
   try {
-  const [dbBlogData] = await Blog.update(req.body, {
+  const dbBlogData = await Blog.update(req.body, {
       where: {
         id: req.params.id,
+        user_id: req.session.user_id
       },
     })
 
     if (!dbBlogData) {
-      res.status(404).json({ message: 'No blog post found with that ID!' }).end()
+      res.status(404).json({ message: 'No blog post found with that ID!' })
       return
     }
     res.status(200).json(dbBlogData).end()
@@ -43,14 +41,15 @@ router.put('/:id', withAuth, async (req, res) => {
 // only route not working right now. 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const [dbBlogData] = Blog.destroy({
+    const dbBlogData = Blog.destroy({
       where: {
         id: req.params.id,
+        user_id: req.session.user_id
       },
     });
 
     if (!dbBlogData) {
-      res.status(404).json({ message: 'No blog post found with that ID!' }).end()
+      res.status(404).json({ message: 'No blog post found with that ID!' })
       return
     }
     res.status(200).json(dbBlogData).end()

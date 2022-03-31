@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">{{title}}</h3>
+        <p class="card-content">{{content}}</p>
+    </div>
+    <div class="card-footer">
+        Creator: {{user.name}} on {{format_date date_created}}
+    </div>
+</div>
+
+{{#if comments.length}}
+<div class="show-comments">
+    <h3>Comments:</h3>
+    {{#each comments as |comments|}}
+    <div class="card">
+        <div class="card-header">
+            {{comments.commentor}} on {{format_date date_created}}
+        </div>
+        <div class="card-body">
+            <p>{{comments.comment}}</p>
+        </div>
+        <div class="card-footer">
+            <button class="btn" type="button" data-id={{comments.id}}>Delete Comment</button>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+<script src="/public/js/comment.js"></script>
