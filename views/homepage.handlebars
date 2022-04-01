@@ -1,15 +1,18 @@
 {{#each blog as |blog| }}
 <div class="row mb-4 project">
   <div class="col-md-5 card">
-    <h2>
-      <a href="/blog/{{id}}">{{title}}</a>
-    </h2>
-    <div class="description">{{blog.description}}
-      <p>Posted: {{User.name}} on {{format_date createdAt}}</p>
+    <div class="card-body">
+      <h4 class="card-title">{{blog.title}}</h4>
+      <h5 class="card-meta">By: {{blog.user.name}} on {{format_date blog.date_created}}</h5>
+      <a href='/blog/{{blog.id}}' class="card-link">View Blog Post</a>
     </div>
-  </div>
-  <div class="col-md-7">
-      {{body}}
   </div>
 </div>
 {{/each}}
+
+
+
+
+
+
+    
