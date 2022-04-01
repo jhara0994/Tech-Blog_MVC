@@ -1,25 +1,25 @@
 const newFormHandler = async (e) => {
     e.preventDefault()
 
-    const content = document.querySelector("#comment-content")
-    const commentor = document.querySelector("#comment-btn")
+    const comment = document.querySelector("#comment-content")
+    const commentor = document.querySelector("#comment-btn").getAttribute('commentor')
     const queryString = window.location.href
     const splitQuery = queryString.split('comment/')
-    post_id = splitQuery[1]
+    blog_id = splitQuery[1]
 
-    if(content) {
+    if(comment) {
         const response = await fetch(`api/comments`, {
             method: 'POST',
-            body: JSON.stringify({content, commentor, post_id}),
+            body: JSON.stringify({comment, commentor, blog_id}),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         
-        if(!response) {
-            alert('Failed to post new comment')
+        if(response.ok) {
+            document.location.replace(`/blogs/${blog_id}`)
         } else {
-            document.location.replace(`/post/${post_id}`)
+            alert('Failed to post new comment')
         }
     }
 }

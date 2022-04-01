@@ -65,7 +65,7 @@ router.get('/dash', withAuth, async (req, res) => {
 
         res.render('dash', {
             ...user,
-            loggedIn: true
+            logged_in: true
         })
     }   catch (err) {
         res.status(500).json(err)
@@ -111,7 +111,7 @@ router.get('/comment/:id', withAuth, async (req, res) => {
 
 //GET route for login
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/dash')
         return
     }

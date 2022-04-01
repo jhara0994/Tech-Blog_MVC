@@ -6,10 +6,10 @@ const delBtnHandler = async (event) => {
             method: 'DELETE'
         })
 
-        if(!response){
-            alert('Failed to delete')
-        } else {
+        if(response.ok){
             document.location.replace('/dash')
+        } else {
+            alert('Failed to delete')
         }
     }
 }

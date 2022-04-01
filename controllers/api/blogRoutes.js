@@ -12,7 +12,6 @@ router.post('/', async (req, res) => {
     });
         res.status(200).json(newBlogData);
       } catch (err) {
-        console.log(err);
         res.status(500).json(err);
       }
 })
@@ -52,7 +51,7 @@ router.delete('/:id', withAuth, async (req, res) => {
       res.status(404).json({ message: 'No blog post found with that ID!' })
       return
     }
-    res.status(200).json(dbBlogData).end()
+    res.status(200).json(dbBlogData)
   } catch (err) {
     res.status(500).json(err)
   }

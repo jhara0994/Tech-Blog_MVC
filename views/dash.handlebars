@@ -8,12 +8,12 @@
   <div class="container">
     <h3>User's Blogs</h3>
     <div class="user-blogs">
-      {{#each blog as |blog|}}
+      {{#each blogs as |blog|}}
       <div id="blog-card">
         <div="card-body">
           <h4="card-title">{{blog.title}}</h4>
           <h5="card-meta">Posted on {{format_date blog.date_created}}</h5>
-          <button class="btn"><a href="/blog/{{blog.id}}">See Blog</a></button>
+          <button class="btn"><a href="/blogs/{{blog.id}}">See Blog</a></button>
           <button class="btn" data-id="{{blog.id}}">Delete Blog</button>
         </div>
       </div>

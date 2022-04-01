@@ -1,8 +1,8 @@
-const newFormHandler = async function(event) {
+const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const title = document.querySelector('#post-title').value;
-    const body = document.querySelector('#post-body').value;
+    const title = document.querySelector('#post-title').value.trim();
+    const body = document.querySelector('#post-body').value.trim();
 
     if (title && body) {
       const response = await fetch(`/api/blogs`, {
@@ -13,10 +13,11 @@ const newFormHandler = async function(event) {
         }),
         headers: { 'Content-Type': 'application/json' },
       });
-      if(!response) {
-        alert('Failed to post new blog!')
-      } else {
+
+      if(response.ok) {
         document.location.replace('/dash')
+      } else {
+        alert('Failed to post new blog!')
     }
   }
 };

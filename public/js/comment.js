@@ -17,16 +17,16 @@ const delBtnHandler = async (event) => {
         method: 'DELETE',
       });
 
-      if(!response) {
-        alert('Failed to Delete comment')
+      if(response.ok) {
+        document.location.replace(`blogs/${blog_id}`);
       } else {
-      document.location.replace(`blogs/${blog_id}`);
+        alert('Failed to Delete comment')
     }
   }
 };
   
   document
-    .querySelector('#new-comment-form')
+    .querySelector('#new-comment')
     .addEventListener('submit', newFormHandler);
 
   document
