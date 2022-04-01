@@ -32,7 +32,7 @@ const seedAll = async () => {
   for (const comment of commentData) {
     await Comment.create({
       ...comment,
-      post_id: posts[Math.floor(Math.random() * posts.length)].id,
+      blog_id: posts[Math.floor(Math.random() * posts.length)].id,
    
     })
   }

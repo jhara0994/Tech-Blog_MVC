@@ -1,14 +1,16 @@
-{{#each blogs as |blog| }}
+<div class="container">
+{{#each posts as |blog| }}
 <div class="row mb-4 project">
   <div class="col-md-5 card">
     <div class="card-body">
       <h4 class="card-title">{{blog.title}}</h4>
       <h5 class="card-meta">By: {{blog.user.name}} on {{format_date blog.date_created}}</h5>
-      <a href='/blog/{{blog.id}}' class="card-link">View Blog Post</a>
+      <a href='/blogs/{{blog.id}}' class="card-link">View Blog Post</a>
     </div>
   </div>
 </div>
 {{/each}}
+</div>
 
 
 

@@ -4,11 +4,11 @@
   </div>
   <button type="submit" class="btn"><a href="/createPost">➕ New Blog Post</a></button>
 
-  {{#if blogs.length}}
+  {{#if posts.length}}
   <div class="container">
     <h3>User's Blogs</h3>
     <div class="user-blogs">
-      {{#each blogs as |blog|}}
+      {{#each posts as |blog|}}
       <div id="blog-card">
         <div="card-body">
           <h4="card-title">{{blog.title}}</h4>
