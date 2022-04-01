@@ -13,6 +13,7 @@
 
 ## Deployed-App:
 ### https://techie-blog-mvc3.herokuapp.com/
+<img width="1426" alt="tech-blog" src="https://user-images.githubusercontent.com/92455472/161346161-f3157406-ad7f-45dc-8253-c1fd5fad7661.png">
 ## Description:
 ### This is a technology blog page built using the Model View Controller (MVC) framework.
 ## Installation:
