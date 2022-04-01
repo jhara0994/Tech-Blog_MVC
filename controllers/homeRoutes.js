@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    // attributes: ['name'],
+                    attributes: ['name'],
                 },
                 {
                     model: Comment,
@@ -98,7 +98,7 @@ router.get('/comment/:id', withAuth, async (req, res) => {
 
         const user = userData.get({plain: true})
 
-        res.render('postComment', {
+        res.render('addComment', {
             ...user,
             logged_in: true
         })

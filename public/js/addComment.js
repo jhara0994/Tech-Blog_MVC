@@ -8,15 +8,19 @@ const newFormHandler = async (e) => {
     post_id = splitQuery[1]
 
     if(content) {
-        const response = await fetch(`api/comment`, {
+        const response = await fetch(`api/comments`, {
             method: 'POST',
             body: JSON.stringify({content, commentor, post_id}),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-
-        document.location.replace(`/post/${post_id}`)
+        
+        if(!response) {
+            alert('Failed to post new comment')
+        } else {
+            document.location.replace(`/post/${post_id}`)
+        }
     }
 }
 

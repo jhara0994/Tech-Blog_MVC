@@ -1,25 +1,34 @@
-const commentFormHandler = async function(event) {
+const blog_id = document.querySelector('#blog_id').innerHTML
+
+const newFormHandler = async (event) => {
+  document.location.replace(`/comments/${blog_id}`)
+}
+
+
+const delBtnHandler = async (event) => {
     event.preventDefault();
+    console.log('Btn clicked')
   
-    const blogId = document.querySelector('input[name="blog-id"]').value;
-    const comment = document.querySelector('textarea[name="comment-body"]').value;
-  
-    if (body) {
-      await fetch('/api/comment', {
-        method: 'POST',
-        body: JSON.stringify({
-          blogId,
-          comment
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    if (event.target.hasAttribute('data-id')) {
+      const id = event.target.getAttribute('data-id')
+      console.log(id)
+
+      const response = await fetch(`/api/comments/${id}`, {
+        method: 'DELETE',
       });
-  
-      document.location.reload();
+
+      if(!response) {
+        alert('Failed to Delete comment')
+      } else {
+      document.location.replace(`blogs/${blog_id}`);
     }
-  };
+  }
+};
   
   document
     .querySelector('#new-comment-form')
-    .addEventListener('submit', commentFormHandler);
+    .addEventListener('submit', newFormHandler);
+
+  document
+    .querySelector('.show-comments')
+    .addEventListener('click', delBtnHandler)
