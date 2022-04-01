@@ -27,7 +27,7 @@ const delBtnHandler = async (event) => {
   
   document
     .querySelector('#new-comment')
-    .addEventListener('submit', newFormHandler);
+    .addEventListener('click', newFormHandler);
 
   document
     .querySelector('.show-comments')

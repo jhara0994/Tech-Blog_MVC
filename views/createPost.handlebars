@@ -1,15 +1,17 @@
-<div class="post card">
+<div class="post-card card">
   <div class="card-header">
     <h2>Create New Blog Post</h2>
   </div>
   <form id="new-post-form" class="card-body">
-    <label class="form-label" for="post-title">Title</label>
-    <input type="text" name="post-title" class="form-input" id="post-title"/>
-
-    <label class="form-label" for="post-body">Content</label>
-    <textarea name="post-body" class="form-input" id="post-body"></textarea>
-
-    <button type="submit" class="btn">Create</button>
+    <div class="new-post-title">
+      <label class="form-label" for="post-title"></label>
+      <input type="text" name="post-title" class="form-input" id="post-title" placeholder="Blog title:" />
+    </div>
+    <div class="new-post-content">
+      <label class="form-label" for="post-body"></label>
+      <textarea name="post-body" class="form-input" id="post-body" placeholder="Input your blog content here."></textarea>
+    </div>
+    <button type="submit" class="btn">Create Blog Post</button>
   </form>
 </div>
 

@@ -1,15 +1,15 @@
 <div class="flex-column min-100-vh">
   <div class="hero dash-header">
-    <h1 class="app-title"><a href="/dash">{{name}}'s' Dashboard</a></h1>
+    <h1 class="app-title">{{name}}'s Dashboard</h1>
+    <button class="create-blog-btn" type="submit" class="btn"><a href="/createPost">➕ New Blog Post</a></button>
   </div>
-  <button type="submit" class="btn"><a href="/createPost">➕ New Blog Post</a></button>
 
   {{#if posts.length}}
   <div class="container">
     <h3>User's Blogs</h3>
     <div class="user-blogs">
       {{#each posts as |blog|}}
-      <div id="blog-card">
+      <div class="card" id="blog-card">
         <div="card-body">
           <h4="card-title">{{blog.title}}</h4>
           <h5="card-meta">Posted on {{format_date blog.date_created}}</h5>

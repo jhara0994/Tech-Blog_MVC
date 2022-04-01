@@ -1,5 +1,5 @@
-const newFormHandler = async (e) => {
-    e.preventDefault()
+const newFormHandler = async (event) => {
+    event.preventDefault()
 
     const comment = document.querySelector("#comment-content")
     const commentor = document.querySelector("#comment-btn").getAttribute('commentor')

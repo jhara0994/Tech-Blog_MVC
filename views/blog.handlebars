@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card blog-card">
     <div class="card-body">
         <h3 class="card-title">{{title}}</h3>
-        <p id="blog-id">{{id}}</p>
+        <p class="hidden" id="blog-id">{{id}}</p>
         <p class="card-content">{{description}}</p>
     </div>
     <div class="card-footer">
@@ -14,7 +14,7 @@
 <div class="show-comments">
     <h3>Comments:</h3>
     {{#each comments as |comments|}}
-    <div class="card">
+    <div class="card comment-card">
         <div class="card-header">
             {{comments.commentor}} on {{format_date date_created}}
         </div>
@@ -28,7 +28,8 @@
     {{/each}}
 </div>
 {{/if}}
-
-<button class="btn" id="new-comment" type="button">Add Comment</button>
+<div class="add-comment-btn">
+    <button class="btn" id="new-comment" type="button">Add Comment</button>
+</div>
 
 <script src="/js/comment.js"></script>
